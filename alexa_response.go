@@ -6,7 +6,7 @@ type AlexaResponse struct {
 }
 
 type Response struct {
-	OutputSpeech `json:"output_speech"`
+	OutputSpeech `json:"outputSpeech"`
 }
 
 type OutputSpeech struct {

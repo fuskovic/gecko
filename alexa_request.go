@@ -11,5 +11,5 @@ type Request struct {
 
 type Intent struct {
 	Name               string `json:"name"`
-	ConfirmationStatus string `json:"confirmation_status"`
+	ConfirmationStatus string `json:"confirmationStatus"`
 }
