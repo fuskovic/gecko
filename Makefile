@@ -1,4 +1,4 @@
-.PHONY: build clean lint
+.PHONY: build lint
 
 lint:
 	goimports -w *.go
