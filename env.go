@@ -10,7 +10,7 @@ import (
 var requiredEnvVars = []string{
 	"CODER_EMAIL",
 	"CODER_PASSWORD",
-	"CODER_BASE_URL",
+	"CODER_ACCESS_URL",
 	"CODER_ENVIRONMENT_NAME",
 }
 

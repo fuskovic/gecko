@@ -30,10 +30,10 @@ func main() {
 			envName  = envVars["CODER_ENVIRONMENT_NAME"]
 		)
 
-		url, err := url.Parse(envVars["CODER_BASE_URL"])
+		url, err := url.Parse(envVars["CODER_ACCESS_URL"])
 		if err != nil {
-			resp.Say("hmmm, it looks I couldn't parse the coder base url you set")
-			return resp, xerrors.Errorf("failed to parse CODER_BASE_URL: %w", err)
+			resp.Say("hmmm, it looks I couldn't parse the coder access url you set")
+			return resp, xerrors.Errorf("failed to parse CODER_ACCESS_URL: %w", err)
 		}
 
 		client, err := coder.NewClient(
