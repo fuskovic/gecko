@@ -1,5 +1,7 @@
 # Gecko
 
+Submission for the 2021 Coder Hackathon.
+
 Gecko is a Coder Enterprise Alexa skill for the Amazon Echo written in Go.
 
 You can use it to rebuild your cloud environment by telling Alexa:
@@ -22,7 +24,7 @@ Where `my-cloud-environment` is the name of an existing coder enterprise environ
 
 ## Step 1 - Download the latest Gecko release
 
-You'll wan't to get the zipped version and can find it on the [releases page](todo:addlink)
+Check the [releases page](https://github.com/fuskovic/gecko/releases) for the latest version.
 
 ## Step 2 - Create a new AWS Lambda function in the AWS Dashboard
 
