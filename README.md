@@ -10,6 +10,8 @@ Where `my-cloud-environment` is the name of an existing coder enterprise environ
 
 ## Demo
 
+[![gecko_demo](https://img.youtube.com/vi/4lu5ygHKgv0/0.jpg)](https://www.youtube.com/watch?v=4lu5ygHKgv0)
+
 ## Pre-requisites
 
 - [Coder Enterprise Account](https://coder.com/trial)
