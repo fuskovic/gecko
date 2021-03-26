@@ -1,2 +1,19 @@
+.PHONY: build clean lint
+
+lint:
+	@goimports -w *.go
+	@echo "go files linted"
+
 build:
-	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o main
+	@echo "removing old binary if one exists..."
+	-rm gecko
+	@echo "building new binary..."
+	@GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o gecko
+
+zip: build
+	@echo "removing old zip file if on exists..."
+	-rm gecko.zip
+	@echo "creating new zip file..."
+	zip gecko.zip gecko
+	@echo "gecko.zip created"
+	@rm gecko

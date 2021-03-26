@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
 	"net/url"
 	"time"
 
@@ -13,11 +12,10 @@ import (
 )
 
 func main() {
-	lambda.Start(func(ctx context.Context, req AlexaRequest) (AlexaResponse, error) {
+	lambda.Start(func(ctx context.Context) (AlexaResponse, error) {
 		ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 		defer cancel()
 
-		log.Printf("checking intent: %s", req.Intent.Name)
 		resp := newResponse()
 
 		envVars, err := loadEnvVars(ctx)
@@ -56,7 +54,7 @@ func main() {
 			resp.Say(fmt.Sprintf("hmmm, it looks I couldn't find the %s environment", envName))
 			return resp, xerrors.Errorf("failed to get user environment: %w", err)
 		}
-		resp.Say(fmt.Sprintf("OK, i'm rebuilding %s", envName))
+		resp.Say(fmt.Sprintf("OK, I added a new environment build job to the queue for the %s environment", envName))
 		return resp, client.RebuildEnvironment(ctx, env.ID)
 	})
 }
