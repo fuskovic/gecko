@@ -56,7 +56,7 @@ func main() {
 		}
 
 		if err := client.RebuildEnvironment(ctx, env.ID); err != nil {
-			resp.Say("hmmm, something wrong when I tried adding an environment build job to the queue")
+			resp.Say("hmmm, something went wrong when I tried adding an environment build job to the queue")
 			return resp, xerrors.Errorf("failed to enqueue environment build job: %w", err)
 		}
 		resp.Say(fmt.Sprintf("OK, I added a new environment build job to the queue for the %s environment", envName))
