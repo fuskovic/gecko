@@ -54,7 +54,12 @@ func main() {
 			resp.Say(fmt.Sprintf("hmmm, it looks I couldn't find the %s environment", envName))
 			return resp, xerrors.Errorf("failed to get user environment: %w", err)
 		}
+
+		if err := client.RebuildEnvironment(ctx, env.ID); err != nil {
+			resp.Say("hmmm, something wrong when I tried adding an environment build job to the queue")
+			return resp, xerrors.Errorf("failed to enqueue environment build job: %w", err)
+		}
 		resp.Say(fmt.Sprintf("OK, I added a new environment build job to the queue for the %s environment", envName))
-		return resp, client.RebuildEnvironment(ctx, env.ID)
+		return resp, nil
 	})
 }
