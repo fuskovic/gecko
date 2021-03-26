@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"log"
 	"net/url"
 	"time"
 
@@ -11,13 +13,17 @@ import (
 )
 
 func main() {
-	lambda.Start(func(ctx context.Context) error {
+	lambda.Start(func(ctx context.Context, req AlexaRequest) (AlexaResponse, error) {
 		ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 		defer cancel()
 
+		log.Printf("checking intent: %s", req.Intent.Name)
+		resp := newResponse()
+
 		envVars, err := loadEnvVars(ctx)
 		if err != nil {
-			return xerrors.Errorf("failed to load environment variables: %w", err)
+			resp.Say("hmmm, it looks like I couldn't load your environment variables")
+			return resp, xerrors.Errorf("failed to load environment variables: %w", err)
 		}
 
 		var (
@@ -28,7 +34,8 @@ func main() {
 
 		url, err := url.Parse(envVars["CODER_BASE_URL"])
 		if err != nil {
-			return xerrors.Errorf("failed to parse CODER_BASE_URL: %w", err)
+			resp.Say("hmmm, it looks I couldn't parse the coder base url you set")
+			return resp, xerrors.Errorf("failed to parse CODER_BASE_URL: %w", err)
 		}
 
 		client, err := coder.NewClient(
@@ -40,13 +47,16 @@ func main() {
 		)
 
 		if err != nil {
-			return xerrors.Errorf("failed to initialize coder client: %w", err)
+			resp.Say("hmmm, it looks I couldn't initialize the coder client")
+			return resp, xerrors.Errorf("failed to initialize coder client: %w", err)
 		}
 
 		env, err := getUserEnv(ctx, client, email, envName)
 		if err != nil {
-			return xerrors.Errorf("failed to get user environment: %w", err)
+			resp.Say(fmt.Sprintf("hmmm, it looks I couldn't find the %s environment", envName))
+			return resp, xerrors.Errorf("failed to get user environment: %w", err)
 		}
-		return client.RebuildEnvironment(ctx, env.ID)
+		resp.Say(fmt.Sprintf("OK, i'm rebuilding %s", envName))
+		return resp, client.RebuildEnvironment(ctx, env.ID)
 	})
 }
