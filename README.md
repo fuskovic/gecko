@@ -12,7 +12,7 @@ Where `my-cloud-environment` is the name of an existing coder enterprise environ
 
 ## Demo
 
-[![gecko_demo](https://img.youtube.com/vi/4lu5ygHKgv0/0.jpg)](https://www.youtube.com/watch?v=4lu5ygHKgv0)
+[![gecko_demo](https://img.youtube.com/vi/JKVYvF-w_KY/0.jpg)](https://youtu.be/JKVYvF-w_KY)
 
 ## Pre-requisites
 
