@@ -84,6 +84,13 @@ There is more configuration to do but we won't be able to do so until our Alexa 
 - Choose a custom model
 - Select `Provision your own` since our Lambda function is hosted on AWS.
 
+`NOTE There is a discrepancy here.`
+
+**It's important to set the language to English(US) and NOT English(UK) like you see in the screenshot below.
+This tripped me up. This will actually prevent you Amazon Echo from executing the skill properly since
+the Amazon Alexa Mobile App you download will use English(US) by default. In other words, they need to
+match for it to work.**
+
 ![create_skill_2](./screenshots/create_skill_2.png)
 
  - On the next page, select `Start from scratch`
