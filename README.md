@@ -16,4 +16,4 @@ Where `my-cloud-environment` is the name of an existing coder enterprise environ
 
 # Interested in setting up gecko for your Coder environment?
 
-Visit setup for detailed instructions on configuring the Alexa Skill and AWS Lambda function.
+Visit the [setup docs](https://github.com/fuskovic/gecko/blob/master/docs/setup.md) for detailed instructions on configuring the Alexa Skill and AWS Lambda function.
