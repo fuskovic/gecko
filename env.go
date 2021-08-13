@@ -2,9 +2,8 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"os"
-
-	"golang.org/x/xerrors"
 )
 
 var requiredEnvVars = []string{
@@ -19,7 +18,7 @@ func loadEnvVars(_ context.Context) (map[string]string, error) {
 	for _, envVar := range requiredEnvVars {
 		value := os.Getenv(envVar)
 		if value == "" {
-			return nil, xerrors.Errorf("required environment variable %q is unset", envVar)
+			return nil, fmt.Errorf("required environment variable %q is unset", envVar)
 		}
 		envVars[envVar] = value
 	}

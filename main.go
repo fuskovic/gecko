@@ -8,7 +8,6 @@ import (
 
 	coder "cdr.dev/coder-cli/coder-sdk"
 	"github.com/aws/aws-lambda-go/lambda"
-	"golang.org/x/xerrors"
 )
 
 func main() {
@@ -18,7 +17,7 @@ func main() {
 
 		envVars, err := loadEnvVars(ctx)
 		if err != nil {
-			return nil, xerrors.Errorf("failed to load environment variables: %w", err)
+			return nil, fmt.Errorf("failed to load environment variables: %w", err)
 		}
 
 		var (
@@ -29,7 +28,7 @@ func main() {
 
 		url, err := url.Parse(envVars["CODER_ACCESS_URL"])
 		if err != nil {
-			return nil, xerrors.Errorf("failed to parse CODER_ACCESS_URL: %w", err)
+			return nil, fmt.Errorf("failed to parse CODER_ACCESS_URL: %w", err)
 		}
 
 		client, err := coder.NewClient(
@@ -41,16 +40,16 @@ func main() {
 		)
 
 		if err != nil {
-			return nil, xerrors.Errorf("failed to initialize coder client: %w", err)
+			return nil, fmt.Errorf("failed to initialize coder client: %w", err)
 		}
 
 		env, err := getUserEnv(ctx, client, email, envName)
 		if err != nil {
-			return nil, xerrors.Errorf("failed to get user environment: %w", err)
+			return nil, fmt.Errorf("failed to get user environment: %w", err)
 		}
 
 		if err := client.RebuildEnvironment(ctx, env.ID); err != nil {
-			return nil, xerrors.Errorf("failed to enqueue environment build job: %w", err)
+			return nil, fmt.Errorf("failed to enqueue environment build job: %w", err)
 		}
 		resp := newResponse()
 		resp.Say(fmt.Sprintf("OK, I added a new environment build job to the queue for the %s environment", envName))

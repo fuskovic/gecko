@@ -2,15 +2,15 @@ package main
 
 import (
 	"context"
+	"fmt"
 
 	coder "cdr.dev/coder-cli/coder-sdk"
-	"golang.org/x/xerrors"
 )
 
 func getUserEnv(ctx context.Context, client coder.Client, email, envName string) (*coder.Environment, error) {
 	envs, err := listUserEnvs(ctx, client, email)
 	if err != nil {
-		return nil, xerrors.Errorf("faield to get environments for %q: %w", email, err)
+		return nil, fmt.Errorf("faield to get environments for %q: %w", email, err)
 	}
 
 	var env *coder.Environment
@@ -22,7 +22,7 @@ func getUserEnv(ctx context.Context, client coder.Client, email, envName string)
 	}
 
 	if env == nil {
-		return nil, xerrors.Errorf("environment %q not found", envName)
+		return nil, fmt.Errorf("environment %q not found", envName)
 	}
 	return env, nil
 }
@@ -30,12 +30,12 @@ func getUserEnv(ctx context.Context, client coder.Client, email, envName string)
 func listUserEnvs(ctx context.Context, client coder.Client, email string) ([]coder.Environment, error) {
 	user, err := client.UserByEmail(ctx, email)
 	if err != nil {
-		return nil, xerrors.Errorf("failed to get user by email %q: %w", email, err)
+		return nil, fmt.Errorf("failed to get user by email %q: %w", email, err)
 	}
 
 	allOrgs, err := client.Organizations(ctx)
 	if err != nil {
-		return nil, xerrors.Errorf("failed to get organizations: %w", err)
+		return nil, fmt.Errorf("failed to get organizations: %w", err)
 	}
 
 	var (
@@ -46,7 +46,7 @@ func listUserEnvs(ctx context.Context, client coder.Client, email string) ([]cod
 	for _, org := range userOrgs {
 		envs, err := client.UserEnvironmentsByOrganization(ctx, user.ID, org.ID)
 		if err != nil {
-			return nil, xerrors.Errorf("faield to get environments for %q: %w", org.Name, err)
+			return nil, fmt.Errorf("faield to get environments for %q: %w", org.Name, err)
 		}
 		userEnvs = append(userEnvs, envs...)
 	}
