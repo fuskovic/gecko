@@ -57,11 +57,10 @@ func listUserOrgs(user *coder.User, orgs []coder.Organization) []coder.Organizat
 	var userOrgs []coder.Organization
 	for _, org := range orgs {
 		for _, member := range org.Members {
-			if member.ID != user.ID {
-				continue
+			if member.ID == user.ID {
+				userOrgs = append(userOrgs, org)
+				break
 			}
-			userOrgs = append(userOrgs, org)
-			break
 		}
 	}
 	return userOrgs

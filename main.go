@@ -51,8 +51,9 @@ func main() {
 		if err := client.RebuildEnvironment(ctx, env.ID); err != nil {
 			return nil, fmt.Errorf("failed to enqueue environment build job: %w", err)
 		}
-		resp := newResponse()
-		resp.Say(fmt.Sprintf("OK, I added a new environment build job to the queue for the %s environment", envName))
-		return &resp, nil
+
+		return newResponse(
+			fmt.Sprintf("OK, I added a new environment build job to the queue for the %s environment", envName),
+		), nil
 	})
 }
