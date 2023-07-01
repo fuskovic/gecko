@@ -12,7 +12,9 @@ Where `my-cloud-environment` is the name of an existing coder enterprise environ
 
 ## Demo
 
-[![gecko_demo](thumbnail.png)](demo.mp4)
+<video width="320" height="240" controls>
+  <source src="https://github.com/fuskovic/gecko/blob/master/demo.mp4" type="video/mp4">
+</video>
 
 # Interested in setting up gecko for your Coder environment?
 
