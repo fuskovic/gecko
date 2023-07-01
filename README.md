@@ -12,7 +12,7 @@ Where `my-cloud-environment` is the name of an existing coder enterprise environ
 
 ## Demo
 
-[![gecko_demo](thumbnail.png)](https://github.com/fuskovic/gecko/blob/master/demo.mp4)
+[![gecko_demo](thumbnail.png)](https://youtu.be/_12z4Mi8ajs)
 
 
 # Interested in setting up gecko for your Coder environment?
