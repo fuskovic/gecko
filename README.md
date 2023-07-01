@@ -12,9 +12,7 @@ Where `my-cloud-environment` is the name of an existing coder enterprise environ
 
 ## Demo
 
-<video controls="true" width="400" height="400">
-    <source src="https://www.youtube.com/watch?v=_12z4Mi8ajs" type="video/mp4">
-</video>
+[![gecko_demo](thumbnail.png)](https://youtu.be/_12z4Mi8ajs)
 
 
 # Interested in setting up gecko for your Coder environment?
