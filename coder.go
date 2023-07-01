@@ -10,7 +10,7 @@ import (
 func getUserEnv(ctx context.Context, client coder.Client, email, envName string) (*coder.Environment, error) {
 	envs, err := listUserEnvs(ctx, client, email)
 	if err != nil {
-		return nil, fmt.Errorf("faield to get environments for %q: %w", email, err)
+		return nil, fmt.Errorf("failed to get environments for %q: %w", email, err)
 	}
 
 	var env *coder.Environment
